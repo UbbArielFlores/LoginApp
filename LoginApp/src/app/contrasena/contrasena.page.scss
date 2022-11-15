@@ -1,0 +1,56 @@
+ion-card-header.ios {
+    display: flex;
+    flex-flow: column-reverse;
+}
+
+ion-card-title{
+    font-size:35px;
+    color: rgb(255, 255, 255);
+}
+
+.msg{
+    margin-left: 5px;
+    font-size: 12px
+}
+
+.title{
+    transform:translate(-14px,-1px)
+}
+
+.icon{
+    transform:translateX(-10vw);
+}
+
+.contenido{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 39%;
+    transform: translateY(-70%);
+}
+
+img{
+    width: 100vw;
+    height: 100vh;
+}
+
+.center {
+    text-align: center;
+    padding-top: 3.8em;
+}
+
+h1{
+    color: #fff;
+    padding-top: 1.8em;
+    padding-bottom: 1.2em;
+}
+
+.btn{
+    margin-top:1.5em;
+    height: 48px;
+    width: 100%;
+}
+
+p{
+    margin-top: 1em;
+}

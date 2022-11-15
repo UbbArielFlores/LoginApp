@@ -1,0 +1,21 @@
+<ion-content >
+  <img src="/assets/images/texturaLoginApp.jpg" alt="">
+  <div class="contenido" >
+    <ion-card-header class="center">
+      <ion-card-title>Iniciar Sesión</ion-card-title>
+    </ion-card-header>
+  
+    <ion-card-content>
+      <ion-text>
+        <h1>Inicia sesión con tu correo</h1>
+      </ion-text>
+      <ion-item>
+        <ion-input [(ngModel)]="emailUser" placeholder="Correo electrónico"></ion-input>
+      </ion-item>
+      <div *ngIf="verify">
+        <ion-label class="msg" color="danger">Lo sentimos, tenemos problemas para iniciar en tu cuenta</ion-label>
+      </div>
+      <ion-button class="btn" (click)="continuar()">Continuar</ion-button>
+    </ion-card-content>
+  </div>
+</ion-content>

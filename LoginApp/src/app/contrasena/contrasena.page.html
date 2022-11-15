@@ -1,0 +1,21 @@
+<ion-content>
+  <img src="/assets/images/texturaLoginApp.jpg" alt="">
+  <div class="contenido" >
+  <ion-card-header class="center">
+    <ion-card-title class="title"> <ion-icon class="icon" name="arrow-back" routerLink="/login"></ion-icon>Iniciar Sesión</ion-card-title>
+  </ion-card-header>
+
+  <ion-card-content>
+    <ion-text>
+      <h1>Inicia sesión con tu contraseña</h1>
+    </ion-text>
+    <ion-item>
+      <ion-input  [(ngModel)]="password" type="password" placeholder="Contraseña"></ion-input>
+    </ion-item>
+    <div *ngIf="verify">
+      <ion-label class="msg" color="danger">Lo sentimos, tenemos problemas para iniciar en tu cuenta</ion-label>
+    </div>
+    <ion-button class="btn" (click)="ingresar()">Ingresar</ion-button>
+  </ion-card-content>
+  </div>
+</ion-content>

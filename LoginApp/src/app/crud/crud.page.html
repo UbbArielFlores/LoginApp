@@ -1,0 +1,184 @@
+
+<ion-header>
+  <ion-toolbar class="center">
+    <ion-title>CRUD</ion-title>
+    <ion-button class="anadir"color="primary" (click)="setOpen(true)">Crear</ion-button>
+    <ion-button class="sesion"color="primary" routerLink="/login">Cerrar Sesión</ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <img src="/assets/images/texturaLoginApp.jpg" alt="">
+  <div class="contenido" >
+  <ion-list [inset]="true" class="margin0">
+    <ion-item *ngFor="let item of allUsers">
+      <ion-label>{{item.correo}}</ion-label>
+      <ion-button color="success" (click)="visualiza(true,item.correo)">Visualizar</ion-button>
+      <ion-button color="warning"(click)="edita(true,item.correo)">Editar</ion-button>
+      <ion-button color="danger" (click)="eliminar(item.correo)" >Eliminar</ion-button>
+    </ion-item>
+  </ion-list>
+
+<!– -- -- --Anadir ------–>
+  <ion-modal [isOpen]="anadir">
+    <ng-template>
+      <ion-card-content>
+        <form [formGroup]="formAnadir">
+        <ion-text class="center">
+          <h1>Registrando</h1>
+        </ion-text>
+        <ion-text>
+          <h2>Regístrate con tu correo</h2>
+        </ion-text>
+        <ion-item>
+          <ion-input type="email" formControlName="correo" placeholder="Correo electrónico"></ion-input>
+        </ion-item>
+        <ion-text>
+          <h2>Nombre</h2>
+        </ion-text>
+        <ion-item>
+          <ion-input type="text" formControlName="nombre" placeholder="Nombre"></ion-input>
+        </ion-item>
+        <ion-text>
+          <h2>Apellido paterno</h2>
+        </ion-text>
+        <ion-item>
+          <ion-input type="text" formControlName="apellidoPaterno" placeholder="Apellido paterno"></ion-input>
+        </ion-item>
+        <ion-text>
+          <h2>Apellido materno</h2>
+        </ion-text>
+        <ion-item>
+          <ion-input type="text" formControlName="apellidoMaterno" placeholder="Apellido materno"></ion-input>
+        </ion-item>
+        <ion-text>
+          <h2>Telefono</h2>
+        </ion-text>
+        <ion-item>
+          <ion-input type="text" formControlName="telefono" placeholder="Telefono"></ion-input>
+        </ion-item>
+        <ion-text>
+          <h2>Contraseña</h2>
+        </ion-text>
+        <ion-item>
+          <ion-input type="password" formControlName="contrasena" placeholder="Contraseña"></ion-input>
+        </ion-item>
+        <div class="center">
+          <div *ngIf="verify">
+            <ion-label class="msg" color="danger">Por favor, ingrese los campos correctamente</ion-label>
+          </div>
+          <ion-button class="btn" (click)="registrar()">Registrar</ion-button>
+        <ion-button class="btn" color="danger" (click)="setOpen(false)">Cancelar</ion-button>
+        </div>
+      </form>
+      </ion-card-content>
+    </ng-template>
+  </ion-modal>
+
+<!– -- -- --Visualizar ------–>
+
+  <ion-modal [isOpen]="visualizar">
+    <ng-template>
+      <ion-card-content>
+        <ion-text class="center">
+          <h1>Visualizando</h1>
+        </ion-text>
+        <ion-text>
+          <h2>Correo</h2>
+        </ion-text>
+        <ion-item>
+          <ion-input type="email" value={{correo}} disabled="true"></ion-input>
+        </ion-item>
+        <ion-text>
+          <h2>Nombre</h2>
+        </ion-text>
+        <ion-item>
+          <ion-input type="text" value={{nombre}} disabled="true"></ion-input>
+        </ion-item>
+        <ion-text>
+          <h2>Apellido paterno</h2>
+        </ion-text>
+        <ion-item>
+          <ion-input type="text" value={{apellidoP}} disabled="true"></ion-input>
+        </ion-item>
+        <ion-text>
+          <h2>Apellido materno</h2>
+        </ion-text>
+        <ion-item>
+          <ion-input type="text" value={{apellidoM}} disabled="true"></ion-input>
+        </ion-item>
+        <ion-text>
+          <h2>Telefono</h2>
+        </ion-text>
+        <ion-item>
+          <ion-input type="text" value={{telefono}} disabled="true"></ion-input>
+        </ion-item>
+        <ion-text>
+          <h2>Contraseña</h2>
+        </ion-text>
+        <ion-item>
+          <ion-input type="password" value={{contrasena}} disabled="true"></ion-input>
+        </ion-item>
+        <div class="center">
+          <ion-button class="btn" color="danger" (click)="visualizaClose(false)">Cancelar</ion-button>
+        </div>
+      </ion-card-content>
+    </ng-template>
+  </ion-modal>
+
+<!– -- -- --Editar ------–>
+  <ion-modal [isOpen]="editar">
+    <ng-template>
+      <ion-card-content>
+        <ion-text class="center">
+          <h1>Editando</h1>
+        </ion-text>
+        <ion-text>
+          <h2>Correo</h2>
+        </ion-text>
+        <ion-item>
+          <ion-input type="email" placeholder="Correo electrónico" value={{correo}} disabled="true"></ion-input>
+        </ion-item>
+        <ion-text>
+          <h2>Nombre</h2>
+        </ion-text>
+        <ion-item>
+          <ion-input type="text" placeholder="Nombre" value={{nombre}}  [(ngModel)]="nombre"></ion-input>
+        </ion-item>
+        <ion-text>
+          <h2>Apellido paterno</h2>
+        </ion-text>
+        <ion-item>
+          <ion-input type="text" placeholder="Apellido paterno" value={{apellidoP}} [(ngModel)]="apellidoP"></ion-input>
+        </ion-item>
+        <ion-text>
+          <h2>Apellido materno</h2>
+        </ion-text>
+        <ion-item>
+          <ion-input type="text" placeholder="Apellido materno" value={{apellidoM}} [(ngModel)]="apellidoM"></ion-input>
+        </ion-item>
+        <ion-text>
+          <h2>Telefono</h2>
+        </ion-text>
+        <ion-item>
+          <ion-input type="text" placeholder="Telefono" value={{telefono}} [(ngModel)]="telefono"></ion-input>
+        </ion-item>
+        <ion-text>
+          <h2>Contraseña</h2>
+        </ion-text>
+        <ion-item>
+          <ion-input type="password" placeholder="Contraseña" value={{contrasena}} [(ngModel)]="contrasena"></ion-input>
+        </ion-item>
+        <div *ngIf="verify">
+          <ion-label class="msg" color="danger">Por favor, ingrese los campos correctamente</ion-label>
+        </div>
+        <div class="center">
+          <ion-button class="btn" (click)="editado()">Editado</ion-button>
+        <ion-button class="btn" color="danger" (click)="editaClose(false)">Cancelar</ion-button>
+        </div>
+        
+      </ion-card-content>
+    </ng-template>
+  </ion-modal>
+  </div>
+</ion-content>
