@@ -13,6 +13,6 @@ Angular:
 
 APK: LoginApp.apk
 
-Usuario por defecto
+Usuario por defecto:
 mail: seba@gmail.com
 contraseña: 12345678
