@@ -12,3 +12,7 @@ Angular:
     npm install
 
 APK: LoginApp.apk
+
+Usuario por defecto
+mail: seba@gmail.com
+contraseña: 12345678
